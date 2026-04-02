@@ -24,3 +24,17 @@
 /Pet.class
 /PetAdoptionCenter.class
 /Monkey.class
+/Stack.class
+/StackTest.class
+/L16LabCustomerServiceQueue.class
+/Customer.class
+/CustomerQueue.class
+/FixSinglyLinkedOrderedList.class
+/SinglyLinkedListFix$NodeFix.class
+/SinglyLinkedListFix.class
+/Delivery.class
+/DeliveryDronesHangar.class
+/Drone.class
+/Hangar.class
+/PriorityDrone.class
+/StandardDrone.class

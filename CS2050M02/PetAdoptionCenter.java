@@ -4,7 +4,6 @@
  */
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class PetAdoptionCenter {
 	public static void main(String[] args) {
@@ -75,6 +74,10 @@ public class PetAdoptionCenter {
 		// ============================================
 		// Build a list of pets whose names start with 'M'
 		// Print the favorites list
+		ArrayList<Pet> petsThatStartWithM = buildFavoritesStartingWith(pets, 'm');
+		for (Pet pet : petsThatStartWithM) {
+			System.out.println(pet.getName());
+		}
 	}
 
 	private static void feedAll(ArrayList<Pet> pets) {
@@ -100,11 +103,13 @@ public class PetAdoptionCenter {
 	}
 
 	public static ArrayList<Pet> buildFavoritesStartingWith(ArrayList<Pet> pets, char letter) {
-		// TODO:
-		// Create a new ArrayList<Pet>
-		// Add pets whose names start with the given letter
-		// Comparison should be case-insensitive
-		return null;
+		ArrayList<Pet> foundPets = new ArrayList<Pet>();
+		for (Pet pet : pets) {
+			if (pet.getName().toLowerCase().charAt(0) == letter || pet.getName().toUpperCase().charAt(0) == letter) {
+				foundPets.add(pet);
+			}
+		}
+		return foundPets;
 	}
 }
 

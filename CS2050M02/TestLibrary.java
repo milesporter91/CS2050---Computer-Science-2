@@ -6,15 +6,11 @@
 
 // Driver class
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.Scanner;
 
 public class TestLibrary {
 
 	// Main method
 	public static void main(String[] args) {
-		Scanner kb = new Scanner(System.in);
 		PrintBook book1 = new PrintBook("Into The Wild", "Jon Krakaeur", 1996);
 		System.out.println(book1.toString());
 		Library firstLibrary = new Library("Public Library", 1, 2);
@@ -179,17 +175,17 @@ class Library {
 	}
 
 	// Iterates through bookshelf and counts books by non-null slots
-	private int countBooks() {
-		int numberOfBooks = 0;
-		for (int i = 0; i < this.numberOfShelves; i++) {
-			for (int j = 0; j < this.shelfCapacity; j++) {
-				if (bookshelf[i][j] != null) {
-					numberOfBooks++;
-				}
-			}
-		}
-		return numberOfBooks;
-	}
+//	private int countBooks() {
+//		int numberOfBooks = 0;
+//		for (int i = 0; i < this.numberOfShelves; i++) {
+//			for (int j = 0; j < this.shelfCapacity; j++) {
+//				if (bookshelf[i][j] != null) {
+//					numberOfBooks++;
+//				}
+//			}
+//		}
+//		return numberOfBooks;
+//	}
 
 	// Getters & Setters
 	public String getName() {

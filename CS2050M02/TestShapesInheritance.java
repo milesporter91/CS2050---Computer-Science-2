@@ -13,10 +13,8 @@ public class TestShapesInheritance
 		System.out.printf("The radius is  %.2f \n", circle.getRadius());
 		System.out.printf("The area is  %.2f \n", circle.getArea());
 		System.out.printf("The diameter is  %.2f \n", circle.getDiameter());
-		CircleFromSimpleGeometricShape circle2 = new CircleFromSimpleGeometricShape(1, "blue", true);
 				
 		
-		int random = (int)Math.random()*10;
 		
 	}//end main
 

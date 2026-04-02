@@ -61,6 +61,7 @@ abstract class Vehicle
 	}
 
 	public abstract void refuel();
+	
 }
 
 interface Electric
