@@ -4,8 +4,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Runs the Drone Delivery Hangar menu-driven application.
+ * Allows the user to load drones from a CSV file, display inventory,
+ * search for drones, generate sorted reports, and count drones by manufacturer.
+ */
 public class DeliveryDronesHangar {
 
+	/**
+	 * Starts the drone hangar program and controls the menu loop.
+	 * Prompts the user for menu selections until the user chooses to exit.
+	 * 
+	 * @param args command-line arguments (not used)
+	 */
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		Hangar hangar = new Hangar();
@@ -61,13 +72,22 @@ public class DeliveryDronesHangar {
 
 } // end of DeliveryDronesHangar
 
-
+/**
+ * Represents a drone hangar that stores and manages a collection of drones.
+ * Provides methods for loading drones from a CSV file, displaying inventory,
+ * searching inventory, sorting reports, and counting drones by manufacturer.
+ */
 class Hangar {
 
 	// Instance variables
 	private ArrayList<Drone> drones = new ArrayList<>();
 
-	// Instance Methods
+	/**
+	 * Counts and displays the total number of drones for the specified manufacturer.
+	 * The comparison is case-insensitive.
+	 * 
+	 * @param manufacturerName the manufacturer name to search for
+	 */
 	public void getCountByManufacturer(String manufacturerName) {
 		int countByManufacturerName = 0;
 		for (Drone drone : drones) {
@@ -78,6 +98,10 @@ class Hangar {
 		System.out.println("Total drones for manufacturer " + manufacturerName + ": " + countByManufacturerName);
 	}
 
+	/**
+	 * Displays all drones currently stored in the hangar inventory.
+	 * If the hangar is empty, a message is displayed instead.
+	 */
 	public void displayHangarInventory() {
 		if (!drones.isEmpty()) {
 			System.out.println("Current Hangar Inventory:");
@@ -94,6 +118,14 @@ class Hangar {
 		}
 	}
 
+	/**
+	 * Searches the hangar inventory for drones matching the given manufacturer
+	 * and drone type, then displays the matching results.
+	 * Accepts Priority or P, and Standard or S, for drone type input.
+	 * 
+	 * @param droneType the drone type to search for
+	 * @param manufacturerName the manufacturer name to search for
+	 */
 	public void searchDronesByManufacturerAndType(String droneType, String manufacturerName) {
 		ArrayList<Drone> droneResults = new ArrayList<>();
 		if (droneType.equalsIgnoreCase("P") || droneType.equalsIgnoreCase("Priority")) {
@@ -127,6 +159,11 @@ class Hangar {
 		}
 	}
 
+	/**
+	 * Generates and displays a report of drones sorted by manufacturing year
+	 * from oldest to newest. Sorting is performed on a copy of the inventory
+	 * so the original order remains unchanged.
+	 */
 	public void generateReportSortedByManufacturingYear() {
 		ArrayList<Drone> sortedDronesByManufacturingYear = new ArrayList<Drone>(drones);
 		for (int pass = 0; pass < sortedDronesByManufacturingYear.size() - 1; pass++) {
@@ -146,6 +183,11 @@ class Hangar {
 		}
 	}
 
+	/**
+	 * Generates and displays a report of drones sorted by payload capacity
+	 * from lowest to highest. Sorting is performed on a copy of the inventory
+	 * so the original order remains unchanged.
+	 */
 	public void generateReportSortedByPayloadCapacity() {
 		ArrayList<Drone> sortedDronesByPayloadCapacity = new ArrayList<Drone>(drones);
 		for (int pass = 0; pass < sortedDronesByPayloadCapacity.size() - 1; pass++) {
@@ -165,6 +207,9 @@ class Hangar {
 		}
 	}
 
+	/**
+	 * Displays the main menu options for the drone hangar system.
+	 */
 	public void printMenu() {
 		System.out.println("=== Drone Hangar Menu === ");
 		System.out.println("1. Load Drones from CSV");
@@ -177,6 +222,12 @@ class Hangar {
 		System.out.println("Enter your choice (1-7):");
 	}
 
+	/**
+	 * Reads drone data from a CSV file and adds valid drone records
+	 * to the hangar inventory. Invalid lines are skipped with an error message.
+	 * 
+	 * @param fileName the name of the CSV file to read
+	 */
 	public void readFromCSV(String fileName) {
 		int lineNumber = 0;
 		try (Scanner scanner = new Scanner(new File(fileName))) {
@@ -243,50 +294,99 @@ class Hangar {
 
 } // end of Hangar class
 
+/**
+ * Represents a general drone in the hangar inventory.
+ * Stores manufacturer, manufacturing year, and payload capacity.
+ * This is an abstract superclass for specific drone types.
+ */
 abstract class Drone {
 	// Instance variables
 	private String manufacturerName;
 	private int manufacturedYear;
 	private double payloadKg;
 
-	// Constructor
+	/**
+	 * Constructs a Drone object with the specified manufacturer,
+	 * manufacturing year, and payload capacity.
+	 * 
+	 * @param manufacturerName the drone manufacturer name
+	 * @param manufacturedYear the year the drone was manufactured
+	 * @param payloadKg the payload capacity in kilograms
+	 */
 	public Drone(String manufacturerName, int manufacturedYear, double payloadKg) {
 		setManufacturerName(manufacturerName);
 		this.manufacturedYear = manufacturedYear;
 		this.payloadKg = payloadKg;
 	}
 
-	// Getters & Setters
+	/**
+	 * Returns the manufacturer name of the drone.
+	 * 
+	 * @return the manufacturer name
+	 */
 	public String getManufacturerName() {
 		return manufacturerName;
 	}
 
+	/**
+	 * Sets the manufacturer name of the drone.
+	 * 
+	 * @param manufacturerName the manufacturer name to set
+	 */
 	public void setManufacturerName(String manufacturerName) {
 		this.manufacturerName = manufacturerName;
 	}
 
+	/**
+	 * Returns the manufacturing year of the drone.
+	 * 
+	 * @return the manufactured year
+	 */
 	public int getManufacturedYear() {
 		return manufacturedYear;
 	}
 
+	/**
+	 * Returns the payload capacity of the drone in kilograms.
+	 * 
+	 * @return the payload capacity
+	 */
 	public double getPayloadKg() {
 		return payloadKg;
 	}
 
-	// toString
+	/**
+	 * Returns a string representation of the drone.
+	 * 
+	 * @return a formatted string containing drone details
+	 */
 	@Override
 	public abstract String toString();
 
 } // end of abstract Drone superclass
 
+/**
+ * Represents a priority drone in the hangar inventory.
+ */
 class PriorityDrone extends Drone {
 
-	// Constructors
+	/**
+	 * Constructs a PriorityDrone with the specified manufacturer,
+	 * manufacturing year, and payload capacity.
+	 * 
+	 * @param manufacturerName the drone manufacturer name
+	 * @param manufacturedYear the year the drone was manufactured
+	 * @param payloadKg the payload capacity in kilograms
+	 */
 	public PriorityDrone(String manufacturerName, int manufacturedYear, double payloadKg) {
 		super(manufacturerName, manufacturedYear, payloadKg);
 	}
 
-	// toString
+	/**
+	 * Returns a formatted string representation of the priority drone.
+	 * 
+	 * @return a string containing the priority drone details
+	 */
 	@Override
 	public String toString() {
 		String toString = "Priority Drone - " + getManufacturerName() + " | Year: " + getManufacturedYear()
@@ -296,14 +396,28 @@ class PriorityDrone extends Drone {
 
 } // end of PriorityDrone class
 
+/**
+ * Represents a standard drone in the hangar inventory.
+ */
 class StandardDrone extends Drone {
 
-	// Constructors
+	/**
+	 * Constructs a StandardDrone with the specified manufacturer,
+	 * manufacturing year, and payload capacity.
+	 * 
+	 * @param manufacturerName the drone manufacturer name
+	 * @param manufacturedYear the year the drone was manufactured
+	 * @param payloadKg the payload capacity in kilograms
+	 */
 	public StandardDrone(String manufacturerName, int manufacturedYear, double payloadKg) {
 		super(manufacturerName, manufacturedYear, payloadKg);
 	}
 
-	// toString
+	/**
+	 * Returns a formatted string representation of the standard drone.
+	 * 
+	 * @return a string containing the standard drone details
+	 */
 	@Override
 	public String toString() {
 		String toString = "Standard Drone - " + getManufacturerName() + " | Year: " + getManufacturedYear()
