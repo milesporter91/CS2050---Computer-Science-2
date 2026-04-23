@@ -64,13 +64,12 @@ public class TestArrayRectangle {
 
 
 		//8 Create a method to find  the  index of the rectangle with the largest length 
-		
+
 		int largestLengthIndex = getLargestLengthIndex(rectangles);
 		System.out.println("\nThe rectangle with the largest length is at index " + largestLengthIndex);
 
 		//9 Call a method to return the sum all the rectanlges perimeters
-		double totalPerimeters = calculateAllRectanglePerimeters(rectangles);
-		System.out.println("Total of all perimeters: " + totalPerimeters);
+
 		  
 
 	}// end main
@@ -126,13 +125,7 @@ public class TestArrayRectangle {
 	 * @param rectanglesReference to an array of rectangles
 	 * 
 	 */
-		public static double calculateAllRectanglePerimeters(RectangleL23[] rectanglesReference) {
-			double sumOfPerimeters = 0;
-			for(int i = 0; i < rectanglesReference.length; i++) {
-				sumOfPerimeters += rectanglesReference[i].getPerimeter();
-			}
-			return sumOfPerimeters;
-		}
+		
 
 } //end TestBasicRectangle Class	
 
@@ -177,7 +170,7 @@ class RectangleL23 {
 		return this.length;
 	}
 
-	/** Return Width */
+	/** Return Woidth */
 	public double getWidth() {
 		return this.width;
 	}
