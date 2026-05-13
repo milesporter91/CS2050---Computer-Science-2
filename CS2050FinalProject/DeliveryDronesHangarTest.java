@@ -62,7 +62,6 @@ class DeliveryDronesHangarTest {
 	void tearDown() throws Exception {
 		// Clears the Hangar reference after each test.
 		hangar = null;
-
 		// Cleanup test CSV files if they exist.
 		new File("test_drones.csv").delete();
 		new File("test_invalid_drones.csv").delete();

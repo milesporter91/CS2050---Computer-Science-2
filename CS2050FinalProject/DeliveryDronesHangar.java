@@ -212,8 +212,7 @@ class Hangar {
 			return false;
 		}
 
-		maintenanceQueue.add(drone);
-		return true;
+		return maintenanceQueue.add(drone);
 	}
 
 	/**
@@ -292,7 +291,6 @@ class Hangar {
 		}
 
 		return droneResults;
-
 	}
 
 	/**
